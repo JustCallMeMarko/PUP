@@ -47,11 +47,11 @@ public class DataControl implements AutoCloseable {
     }
 
     public ArrayList<String> getIncome() throws SQLException{
-        String query = "SELECT income, income_date AS date FROM `transactions` GROUP BY income_date;";
+        String query = "SELECT SUM(income) as total_income, income_date AS date FROM `transactions` GROUP BY income_date;";
         ResultSet res = statement.executeQuery(query);
         ArrayList<String> datas = new ArrayList<>();
         while(res.next()) {
-            datas.add(res.getString("income"));  
+            datas.add(res.getString("total_income"));  
             datas.add(res.getString("date")); 
         }
         return datas;

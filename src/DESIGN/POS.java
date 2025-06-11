@@ -208,6 +208,7 @@ public class POS extends javax.swing.JFrame {
         clearBtn = new DESIGN.items.MyButton();
         myButton1 = new DESIGN.items.MyButton();
         printPanel = new javax.swing.JPanel();
+        myButton2 = new DESIGN.items.MyButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,7 +219,7 @@ public class POS extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(251, 158, 58));
         jPanel2.setLayout(new java.awt.GridLayout(3, 3, 8, 8));
 
-        bread.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/bread.png"))); // NOI18N
+        bread.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/bread.png"))); // NOI18N
         bread.setText("Bread");
         bread.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bread.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -231,7 +232,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(bread);
 
-        brownies.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/brownies.png"))); // NOI18N
+        brownies.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/brownies.png"))); // NOI18N
         brownies.setText("Brownies");
         brownies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         brownies.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -244,7 +245,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(brownies);
 
-        carbonara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/carbonara.png"))); // NOI18N
+        carbonara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/carbonara.png"))); // NOI18N
         carbonara.setText("Carbonara");
         carbonara.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         carbonara.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -257,7 +258,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(carbonara);
 
-        mac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/mac.png"))); // NOI18N
+        mac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/mac.png"))); // NOI18N
         mac.setText("Mac");
         mac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mac.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -270,7 +271,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(mac);
 
-        cookie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/cookie.png"))); // NOI18N
+        cookie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/cookie.png"))); // NOI18N
         cookie.setText("Cookie");
         cookie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cookie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -283,7 +284,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(cookie);
 
-        lasagna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/lasagna.png"))); // NOI18N
+        lasagna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/lasagna.png"))); // NOI18N
         lasagna.setText("Lasagna");
         lasagna.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lasagna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -296,7 +297,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(lasagna);
 
-        putoFlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/putoflan.png"))); // NOI18N
+        putoFlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/putoflan.png"))); // NOI18N
         putoFlan.setText("PutoFlan");
         putoFlan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         putoFlan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -309,7 +310,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(putoFlan);
 
-        malabon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/malabon.png"))); // NOI18N
+        malabon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/malabon.png"))); // NOI18N
         malabon.setText("Malabon");
         malabon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         malabon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -322,7 +323,7 @@ public class POS extends javax.swing.JFrame {
         });
         jPanel2.add(malabon);
 
-        puto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FE/idk/puto.png"))); // NOI18N
+        puto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DESIGN/idk/puto.png"))); // NOI18N
         puto.setText("Puto");
         puto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         puto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -448,6 +449,17 @@ public class POS extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        myButton2.setForeground(new java.awt.Color(0, 0, 0));
+        myButton2.setText("Logout");
+        myButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        myButton2.setHover(new java.awt.Color(153, 153, 153));
+        myButton2.setRadius(12);
+        myButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                myButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -458,8 +470,10 @@ public class POS extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(printPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(printPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(myButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,7 +482,10 @@ public class POS extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(printPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(printPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(myButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -477,9 +494,9 @@ public class POS extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,6 +639,11 @@ public class POS extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cashPaidActionPerformed
 
+    private void myButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton2ActionPerformed
+        this.dispose();
+        new PUP().setVisible(true);
+    }//GEN-LAST:event_myButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -665,6 +687,7 @@ public class POS extends javax.swing.JFrame {
     private javax.swing.JButton mac;
     private javax.swing.JButton malabon;
     private DESIGN.items.MyButton myButton1;
+    private DESIGN.items.MyButton myButton2;
     private javax.swing.JComboBox<String> payment;
     private javax.swing.JPanel printPanel;
     private javax.swing.JButton puto;
