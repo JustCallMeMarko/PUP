@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package FE;
+package DESIGN;
 
 import javax.swing.JFrame;
-import BE.dataControl;
+import DATABASE.DataControl;
 import java.sql.SQLException;
 
 /**
@@ -15,16 +15,10 @@ import java.sql.SQLException;
 public class Form extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Form.class.getName());
-    dataControl dbc;
     /**
      * Creates new form Form
      */
     public Form(){
-        try {
-            dbc = new dataControl();
-        } catch (SQLException ex) {
-            System.getLogger(Form.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
-        }
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -45,7 +39,7 @@ public class Form extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         password = new javax.swing.JTextField();
-        myButton1 = new FE.items.MyButton();
+        myButton1 = new DESIGN.items.MyButton();
         err = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,12 +87,11 @@ public class Form extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(err, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(password)
-                        .addComponent(username)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)))
+                    .addComponent(password)
+                    .addComponent(username)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -157,15 +150,22 @@ public class Form extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordActionPerformed
 
     private void myButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton1ActionPerformed
-        try {
+        try (DataControl dc = new DataControl()) {
             String name = username.getText();
             String pass = password.getText();
-            boolean verified = dbc.verifyLogin(name, pass);
-            if(verified){
-                this.dispose();
-                new POS().setVisible(true);
+            Boolean verified = dc.verifyLogin(name, pass);
+            if(name.isEmpty() || pass.isEmpty()){
+                 err.setText("Please input all fields");
             }else{
-                err.setText("Wrong credentials");
+                if(verified == null){
+                    err.setText("Wrong credentials");
+                }else if (verified){
+                    this.dispose();
+                    new Admin().setVisible(true);
+                }else{
+                    this.dispose();
+                    new POS().setVisible(true);
+                }
             }
         } catch (SQLException e) {
             System.out.print(e.getMessage());
@@ -205,7 +205,7 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private FE.items.MyButton myButton1;
+    private DESIGN.items.MyButton myButton1;
     private javax.swing.JTextField password;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

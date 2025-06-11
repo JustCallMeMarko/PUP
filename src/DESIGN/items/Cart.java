@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package FE.items;
+package DESIGN.items;
 
+import DESIGN.POS;
 import java.awt.Dimension;
 
 /**
@@ -16,19 +17,25 @@ public class Cart extends javax.swing.JPanel {
     int qty;
     int price;
     int total;
+    private POS posRef;
     /**
      * Creates new form cart
      */
 
-    public Cart(String ids, String names, int qtys, int prices) {
+    public Cart(String ids, String names, int qtys, int prices, POS posref) {
         this.id = ids;
         this.name = names;
         this.qty = qtys;
         this.price = prices;
         this.total = price * qty;
+        this.posRef = posref;
 
-        setPreferredSize(new Dimension(398, 37)); 
+        setPreferredSize(new Dimension(390, 37)); 
         initComponents();
+    }
+    private void updateTotal() {
+        total = qty * price;
+        totalText.setText("₱" + total); // or however you format it
     }
 
     /**
@@ -48,6 +55,9 @@ public class Cart extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setMaximumSize(new java.awt.Dimension(390, 37));
+        setMinimumSize(new java.awt.Dimension(390, 37));
+        setPreferredSize(new java.awt.Dimension(390, 37));
 
         idText.setText(id);
         idText.setMaximumSize(new java.awt.Dimension(11, 12));
@@ -61,7 +71,7 @@ public class Cart extends javax.swing.JPanel {
 
         quan.setText(Integer.toString(qty));
 
-        totalText.setText(Integer.toString(total));
+        totalText.setText("₱" + Integer.toString(total));
         totalText.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         totalText.setMaximumSize(new java.awt.Dimension(56, 16));
         totalText.setMinimumSize(new java.awt.Dimension(56, 16));
@@ -93,12 +103,12 @@ public class Cart extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(3, 3, 3)
                 .addComponent(quan, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(3, 3, 3)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -106,23 +116,34 @@ public class Cart extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(itemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(quan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(totalText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(quan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(idText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(itemName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(totalText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        qty += 1;
+        quan.setText(Integer.toString(qty));
+        updateTotal();
+        posRef.updateItemQty(id, qty);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if (qty > 1) {
+            qty -= 1;
+            quan.setText(Integer.toString(qty));
+            updateTotal();
+            posRef.updateItemQty(id, qty);
+        } else {
+            posRef.removeItem(id);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

@@ -98,7 +98,7 @@
                       <Component id="jLabel1" min="-2" pref="102" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="102" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Component id="myButton1" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
@@ -129,7 +129,7 @@
                 <Property name="text" type="java.lang.String" value="PRODUCTS"/>
               </Properties>
             </Component>
-            <Component class="FE.items.MyButton" name="myButton1">
+            <Component class="DESIGN.items.MyButton" name="myButton1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
