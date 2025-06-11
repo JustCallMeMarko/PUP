@@ -37,6 +37,18 @@ public class POS extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
+    public void payGcash(){
+        errorMsg.setText("");
+        printGcashPanel();
+        try (DataControl dc = new DataControl()) {
+            dc.saveIncome(total);
+        } catch (SQLException ex) {
+            return;
+        }
+        clearCart();
+        loadPanel();
+        resetLabel();
+    }
     public static POS getInstance() {
         return instance;
     }
@@ -81,6 +93,24 @@ public class POS extends javax.swing.JFrame {
             }});
         }
         printPanel.add(new JLabel("<html><br><br>-------------------------------------------------------------------------------------------------<br>&nbsp;&nbsp;&nbsp;Total : "+total +"<br>&nbsp;&nbsp;&nbsp;Cash Amount : "+ cashPaid.getText() +"<br>&nbsp;&nbsp;&nbsp;Change :"+ change+" <html>") {{
+                setAlignmentX(LEFT_ALIGNMENT);
+            }});
+        printPanel.setLayout(new BoxLayout(printPanel, BoxLayout.Y_AXIS));
+        printPanel.revalidate(); 
+        printPanel.repaint(); 
+    }
+    public void printGcashPanel(){
+        printPanel.removeAll();
+        printPanel.add(new JLabel(title) {{
+            setAlignmentX(LEFT_ALIGNMENT);
+        }});
+        for (int i = 0; i < ids.size(); i++) {
+            String order = "<html>&nbsp;&nbsp;&nbsp;id: " + ids.get(i)+ " | " + names.get(i) + " " + qtys.get(i) + "pcs ₱" +(qtys.get(i) * prices.get(i)) +"<html>";
+            printPanel.add(new JLabel(order) {{
+                setAlignmentX(LEFT_ALIGNMENT);
+            }});
+        }
+        printPanel.add(new JLabel("<html><br><br>-------------------------------------------------------------------------------------------------<br>&nbsp;&nbsp;&nbsp;Total : "+total +"<br>&nbsp;&nbsp;&nbsp;Gcash Payment : "+ total +"<br>&nbsp;&nbsp;&nbsp;<html>") {{
                 setAlignmentX(LEFT_ALIGNMENT);
             }});
         printPanel.setLayout(new BoxLayout(printPanel, BoxLayout.Y_AXIS));
@@ -517,7 +547,12 @@ public class POS extends javax.swing.JFrame {
             }
         } else {
             errorMsg.setText("");
-            new Gcash().setVisible(true);
+            if(total >0){
+                new Gcash(this).setVisible(true);
+            }else{
+                errorMsg.setText("Add product");
+            }
+            
         }
     }//GEN-LAST:event_myButton1ActionPerformed
 

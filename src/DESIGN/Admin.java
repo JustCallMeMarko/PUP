@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author canti
+ * @author HP
  */
 public class Admin extends javax.swing.JFrame {
     public  JPanel mainPanel = new JPanel();
