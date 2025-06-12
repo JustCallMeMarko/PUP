@@ -72,6 +72,36 @@ public class DataControl implements AutoCloseable {
         preparedStatement.setString(3, pass);
         preparedStatement.executeUpdate(); 
     }
+    public ArrayList<ArrayList<String>> getAccounts() throws SQLException {
+        String query = "SELECT user_id, username, role FROM users";
+        ResultSet res = statement.executeQuery(query);
+        ArrayList<ArrayList<String>> datas = new ArrayList<>();
+
+        while(res.next()) {
+            ArrayList<String> dataset = new ArrayList<>(); 
+            dataset.add(Integer.toString(res.getInt("user_id")));  
+            dataset.add(res.getString("username"));  
+            dataset.add(res.getString("role"));
+            datas.add(dataset);
+        }
+        return datas;
+    }
+    public void updateUser(String userId, String newUsername, String newRoleId) throws SQLException {
+        String query = "UPDATE users SET role = ?, username = ? WHERE user_id = ?;";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, newRoleId);
+        preparedStatement.setString(2, newUsername);
+        preparedStatement.setInt(3, Integer.parseInt(userId));
+        int rows = preparedStatement.executeUpdate();
+        System.out.println("rows affected"  + rows);
+        System.out.println(conn.getCatalog());
+    }
+     public void deleteUser(String userId) throws SQLException {
+        String query = "DELETE FROM users WHERE user_id = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, Integer.parseInt(userId));
+        preparedStatement.executeUpdate();
+    }
     @Override
     public void close() throws SQLException {
         if(statement != null && !statement.isClosed()){
